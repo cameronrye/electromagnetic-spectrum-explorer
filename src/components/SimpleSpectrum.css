@@ -1,0 +1,139 @@
+/* SimpleSpectrum Component Styles */
+
+/* Pulse animation for the wavelength indicator */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Spectrum bar hover effects */
+.spectrum-bar {
+  transition: all 0.2s ease;
+}
+
+.spectrum-bar:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md) !important;
+}
+
+/* Individual spectrum region hover effects */
+.spectrum-region {
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.spectrum-region:hover {
+  filter: brightness(1.1);
+  z-index: 2;
+}
+
+/* Indicator animations */
+.wavelength-indicator-arrow {
+  animation: pulse 2s infinite;
+}
+
+.wavelength-indicator-dot {
+  animation: pulse 2s infinite;
+}
+
+.wavelength-indicator-line {
+  animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+  }
+  to {
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.9), 0 0 24px rgba(59, 130, 246, 0.4);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .spectrum-bar {
+    height: 50px !important;
+  }
+  
+  .spectrum-region {
+    font-size: 10px !important;
+  }
+  
+  .wavelength-indicator-arrow {
+    border-left-width: 6px !important;
+    border-right-width: 6px !important;
+    border-top-width: 9px !important;
+  }
+  
+  .wavelength-indicator-dot {
+    width: 10px !important;
+    height: 10px !important;
+  }
+  
+  .wavelength-indicator-line {
+    width: 2px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .spectrum-bar {
+    height: 40px !important;
+  }
+  
+  .spectrum-region {
+    font-size: 8px !important;
+  }
+  
+  .wavelength-indicator-arrow {
+    border-left-width: 5px !important;
+    border-right-width: 5px !important;
+    border-top-width: 7px !important;
+  }
+  
+  .wavelength-indicator-dot {
+    width: 8px !important;
+    height: 8px !important;
+  }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  .wavelength-indicator-arrow,
+  .wavelength-indicator-dot,
+  .wavelength-indicator-line {
+    animation: none;
+  }
+  
+  .spectrum-bar,
+  .spectrum-region {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .wavelength-indicator-line {
+    background-color: var(--theme-text-primary) !important;
+    box-shadow: none !important;
+  }
+  
+  .wavelength-indicator-arrow {
+    border-top-color: var(--theme-text-primary) !important;
+    filter: none !important;
+  }
+  
+  .wavelength-indicator-dot {
+    background-color: var(--theme-text-primary) !important;
+    border-color: var(--theme-background) !important;
+  }
+}

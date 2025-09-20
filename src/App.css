@@ -1,0 +1,364 @@
+/* App-specific styles - global styles moved to index.css */
+
+/* Design System Variables */
+:root {
+  /* Spacing scale - consistent spacing throughout the app */
+  --spacing-xs: 0.25rem;   /* 4px */
+  --spacing-sm: 0.5rem;    /* 8px */
+  --spacing-md: 1rem;      /* 16px */
+  --spacing-lg: 1.5rem;    /* 24px */
+  --spacing-xl: 2rem;      /* 32px */
+  --spacing-2xl: 3rem;     /* 48px */
+
+  /* Border radius scale */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* Shadow scale - using theme variables */
+  --shadow-sm: 0 2px 4px var(--theme-shadow);
+  --shadow-md: 0 4px 8px var(--theme-shadow);
+  --shadow-lg: 0 4px 12px var(--theme-shadow-hover);
+  --shadow-xl: 0 8px 24px var(--theme-shadow-hover);
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styles */
+.app-header {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #6366f1 100%);
+  color: white;
+  padding: var(--spacing-xl) var(--spacing-md);
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Dark theme header adjustments */
+:root.dark .app-header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex: 1;
+}
+
+.header-controls {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+}
+
+.app-header h1 {
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+  letter-spacing: -0.025em;
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Fallback for browsers that don't support background-clip: text */
+@supports not (-webkit-background-clip: text) {
+  .app-header h1 {
+    color: white;
+    background: none;
+    -webkit-text-fill-color: initial;
+  }
+}
+
+.app-subtitle {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.95;
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* Main Content */
+.app-main {
+  flex: 1;
+  padding: var(--spacing-xl) var(--spacing-md);
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Section Styles */
+.visualization-section,
+.scales-section {
+  margin: var(--spacing-xl) 0;
+  display: flex;
+  justify-content: center;
+}
+
+.content-section {
+  background: var(--theme-surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-xl) 0;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--theme-border);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.content-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--theme-primary), transparent);
+  opacity: 0.5;
+}
+
+.content-section:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.info-section {
+  background: var(--theme-surface);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  margin: var(--spacing-xl) 0;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--theme-border);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.info-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--theme-primary), transparent);
+  opacity: 0.5;
+}
+
+.info-section h2 {
+  color: var(--theme-text-primary);
+  margin-bottom: var(--spacing-lg);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+}
+
+.info-section p {
+  color: var(--theme-text-secondary);
+  margin: var(--spacing-sm) 0;
+  line-height: 1.7;
+  font-size: 1rem;
+}
+
+.debug-text {
+  font-size: 0.75rem;
+  color: var(--theme-text-muted);
+  margin-top: var(--spacing-md);
+}
+
+.wavelength-controls {
+  margin: var(--spacing-xl) 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.wavelength-slider {
+  width: 300px;
+  margin: 0 var(--spacing-md);
+}
+
+.color-preview {
+  width: 100px;
+  height: 100px;
+  margin: var(--spacing-md) auto;
+  border-radius: 50%;
+  border: 3px solid var(--theme-border);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.color-preview:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Panels Container */
+.panels-container {
+  display: grid;
+  gap: var(--spacing-xl);
+  margin: var(--spacing-xl) 0;
+}
+
+.panels-container.desktop {
+  grid-template-columns: 1fr 1fr;
+}
+
+.panels-container.mobile {
+  grid-template-columns: 1fr;
+}
+
+/* Hover Info */
+.hover-info {
+  position: fixed;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.hover-content {
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+}
+
+.hover-content h4 {
+  margin: 0 0 var(--spacing-sm) 0;
+  font-size: 1rem;
+  color: #ffd700;
+}
+
+.hover-content p {
+  margin: var(--spacing-xs) 0;
+  font-family: 'Courier New', monospace;
+}
+
+/* Footer */
+.app-footer {
+  background: #2c3e50;
+  color: white;
+  padding: var(--spacing-lg);
+  text-align: center;
+  margin-top: auto;
+}
+
+.app-footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-header {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .app-header h1 {
+    font-size: 2rem;
+  }
+
+  .app-subtitle {
+    font-size: 1rem;
+  }
+
+  .header-controls {
+    position: static;
+    margin-top: var(--spacing-sm);
+  }
+
+  .app-main {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+
+  .panels-container {
+    gap: var(--spacing-md);
+  }
+
+  .hover-info {
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    left: var(--spacing-sm);
+  }
+
+  .hover-content {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .app-main {
+    padding: var(--spacing-sm) var(--spacing-xs);
+  }
+}
+
+/* Smooth transitions */
+.app * {
+  transition: all 0.2s ease;
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Focus management for accessibility */
+.app *:focus {
+  outline: 2px solid var(--theme-focus);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .app-header,
+  .app-footer,
+  .hover-info {
+    display: none;
+  }
+
+  .app-main {
+    padding: 0;
+  }
+
+  .panels-container {
+    grid-template-columns: 1fr;
+  }
+}

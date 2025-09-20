@@ -1,0 +1,217 @@
+.theme-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+.theme-trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  border-radius: var(--radius-md);
+  color: var(--theme-text-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  min-width: 120px;
+  justify-content: space-between;
+}
+
+.theme-trigger:hover {
+  background: var(--theme-surface-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.theme-trigger:focus {
+  outline: 2px solid var(--theme-focus);
+  outline-offset: 2px;
+}
+
+.theme-trigger-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.theme-trigger-label {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dropdown-arrow {
+  font-size: 0.7rem;
+  transition: transform 0.2s ease;
+  color: var(--theme-text-muted);
+}
+
+.dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.theme-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  z-index: 1000;
+  min-width: 160px;
+  overflow: hidden;
+  animation: dropdownSlide 0.2s ease;
+}
+
+@keyframes dropdownSlide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.theme-option {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: none;
+  background: transparent;
+  color: var(--theme-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: 100%;
+  text-align: left;
+  border-bottom: 1px solid var(--theme-border-light);
+}
+
+.theme-option:last-child {
+  border-bottom: none;
+}
+
+.theme-option:hover {
+  background: var(--theme-surface-hover);
+  color: var(--theme-text-primary);
+}
+
+.theme-option.active {
+  background: var(--theme-primary);
+  color: var(--theme-primary-text);
+  font-weight: 600;
+}
+
+.theme-option.active:hover {
+  background: var(--theme-primary-hover);
+}
+
+.theme-option-icon {
+  font-size: 1rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.theme-option-label {
+  flex: 1;
+}
+
+.system-indicator {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  margin-left: auto;
+  color: var(--theme-text-muted);
+}
+
+.system-indicator-dropdown {
+  font-size: 0.75rem;
+  opacity: 0.8;
+  margin-left: auto;
+  color: var(--theme-text-muted);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .theme-trigger {
+    min-width: 100px;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.85rem;
+  }
+
+  .theme-trigger-label {
+    display: none; /* Hide label on mobile, show only icon */
+  }
+
+  .theme-dropdown {
+    min-width: 140px;
+  }
+
+  .theme-option {
+    padding: var(--spacing-sm);
+    font-size: 0.85rem;
+  }
+
+  .system-indicator,
+  .system-indicator-dropdown {
+    display: none; /* Hide system indicators on mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-trigger {
+    min-width: 80px;
+    padding: var(--spacing-xs);
+  }
+
+  .theme-dropdown {
+    min-width: 120px;
+    right: -20px; /* Adjust positioning for small screens */
+  }
+
+  .theme-option {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8rem;
+  }
+}
+
+/* Focus styles for accessibility */
+.theme-option:focus {
+  outline: 2px solid var(--theme-focus);
+  outline-offset: -2px;
+  background: var(--theme-surface-hover);
+}
+
+/* Animation for theme selection */
+.theme-option.active {
+  animation: theme-select 0.3s ease;
+}
+
+@keyframes theme-select {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Keyboard navigation support */
+.theme-dropdown {
+  /* Ensure dropdown is accessible via keyboard */
+  outline: none;
+}
+
+.theme-trigger:focus-visible {
+  outline: 2px solid var(--theme-focus);
+  outline-offset: 2px;
+}

@@ -1,0 +1,141 @@
+/* Reset and base styles for the electromagnetic spectrum explorer */
+:root {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  /* Font rendering optimizations */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Light theme variables - Enhanced for better contrast and visual appeal */
+  --theme-background: #ffffff;
+  --theme-background-secondary: #f8fafc;
+  --theme-surface: #ffffff;
+  --theme-surface-hover: #f1f5f9;
+  --theme-text-primary: #1e293b;
+  --theme-text-secondary: #475569;
+  --theme-text-muted: #94a3b8;
+  --theme-border: #e2e8f0;
+  --theme-border-light: #f1f5f9;
+  --theme-primary: #3b82f6;
+  --theme-primary-hover: #2563eb;
+  --theme-primary-text: #ffffff;
+  --theme-focus: #3b82f6;
+  --theme-shadow: rgba(0, 0, 0, 0.1);
+  --theme-shadow-hover: rgba(0, 0, 0, 0.15);
+  --theme-success: #10b981;
+  --theme-warning: #f59e0b;
+  --theme-error: #ef4444;
+
+  /* Consistent color scheme for the app */
+  color-scheme: light;
+  color: var(--theme-text-primary);
+  background-color: var(--theme-background);
+}
+
+/* Dark theme variables - Enhanced for better contrast and visual appeal */
+:root.dark {
+  --theme-background: #0f172a;
+  --theme-background-secondary: #1e293b;
+  --theme-surface: #1e293b;
+  --theme-surface-hover: #334155;
+  --theme-text-primary: #f8fafc;
+  --theme-text-secondary: #cbd5e1;
+  --theme-text-muted: #64748b;
+  --theme-border: #334155;
+  --theme-border-light: #475569;
+  --theme-primary: #60a5fa;
+  --theme-primary-hover: #3b82f6;
+  --theme-primary-text: #0f172a;
+  --theme-focus: #60a5fa;
+  --theme-shadow: rgba(0, 0, 0, 0.4);
+  --theme-shadow-hover: rgba(0, 0, 0, 0.6);
+  --theme-success: #34d399;
+  --theme-warning: #fbbf24;
+  --theme-error: #f87171;
+
+  color-scheme: dark;
+  color: var(--theme-text-primary);
+  background-color: var(--theme-background);
+}
+
+/* Global reset */
+* {
+  box-sizing: border-box;
+}
+
+/* Body styles - remove conflicting flex layout */
+body {
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--theme-background);
+  /* Improve scroll behavior */
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Light theme body background - Enhanced gradient */
+:root.light body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+/* Dark theme body background - Enhanced gradient */
+:root.dark body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+/* Link styles */
+a {
+  font-weight: 500;
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Remove default heading styles that conflict with component styles */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+/* Button reset - let components handle their own button styles */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+/* Focus styles for accessibility */
+button:focus,
+input:focus,
+select:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Input reset */
+input, select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
