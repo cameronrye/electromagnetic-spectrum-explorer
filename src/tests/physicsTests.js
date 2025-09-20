@@ -5,7 +5,7 @@ import {
   frequencyToWavelength,
   frequencyToEnergyEV,
   energyEVToWavelength,
-  energyEVToFrequency,
+  // energyEVToFrequency,
   formatWavelength,
   formatFrequency,
   formatEnergy
@@ -216,14 +216,14 @@ export function runUnitConversionTests() {
 
   // Test wavelength unit conversions
   const testWavelengthM = 500e-9; // 500 nm in meters
-  const expectedConversions = {
-    nm: 500,
-    μm: 0.5,
-    mm: 0.0005,
-    cm: 0.00005,
-    m: 500e-9,
-    km: 500e-12
-  };
+  // const expectedConversions = {
+  //   nm: 500,
+  //   μm: 0.5,
+  //   mm: 0.0005,
+  //   cm: 0.00005,
+  //   m: 500e-9,
+  //   km: 500e-12
+  // };
 
   // Test 1: Wavelength formatting with automatic unit selection
   const formattedWavelength = formatWavelength(testWavelengthM);
@@ -351,7 +351,7 @@ export async function runSpectrumDataTests() {
   // Test 1: All regions have required properties
   const requiredProps = ['id', 'name', 'color', 'wavelengthMin', 'wavelengthMax', 'frequencyMin', 'frequencyMax'];
   const test1Pass = SPECTRUM_REGIONS.every(region => 
-    requiredProps.every(prop => region.hasOwnProperty(prop))
+    requiredProps.every(prop => Object.prototype.hasOwnProperty.call(region, prop))
   );
   tests.push({
     name: 'Region Properties Complete',

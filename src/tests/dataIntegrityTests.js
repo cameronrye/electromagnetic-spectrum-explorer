@@ -1,6 +1,6 @@
 // Comprehensive data integrity and spectrum data validation testing
 import { SPECTRUM_REGIONS, getRegionByWavelength, PHYSICS_CONSTANTS } from '../data/spectrumData.js';
-import { wavelengthToFrequency, wavelengthToEnergyEV } from '../utils/physicsCalculations.js';
+// import { wavelengthToFrequency, wavelengthToEnergyEV } from '../utils/physicsCalculations.js';
 
 // Test spectrum region data consistency
 export function runSpectrumDataConsistencyTests() {
@@ -15,7 +15,7 @@ export function runSpectrumDataConsistencyTests() {
   
   SPECTRUM_REGIONS.forEach((region, index) => {
     requiredProps.forEach(prop => {
-      if (!region.hasOwnProperty(prop) || region[prop] === null || region[prop] === undefined) {
+      if (!Object.prototype.hasOwnProperty.call(region, prop) || region[prop] === null || region[prop] === undefined) {
         propertiesTest = false;
         missingProps.push(`Region ${index} (${region.name || 'Unknown'}): missing ${prop}`);
       }

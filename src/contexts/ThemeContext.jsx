@@ -20,6 +20,7 @@ const ThemeContext = createContext();
  * @example
  * const { theme, setTheme, resolvedTheme } = useTheme();
  */
+// eslint-disable-next-line react-refresh/only-export-components
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (!context) {

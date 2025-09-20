@@ -1,9 +1,9 @@
 // Comprehensive performance and memory usage testing
-import { 
-  wavelengthToFrequency, 
+import {
+  wavelengthToFrequency,
   wavelengthToEnergyEV,
-  frequencyToWavelength,
-  energyEVToWavelength,
+  // frequencyToWavelength,
+  // energyEVToWavelength,
   formatWavelength,
   formatFrequency,
   formatEnergy

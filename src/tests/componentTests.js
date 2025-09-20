@@ -11,11 +11,11 @@ import {
 
 import {
   convertWavelength,
-  convertFrequency,
-  convertEnergy,
+  // convertFrequency,
+  // convertEnergy,
   getBestWavelengthUnit,
-  getBestFrequencyUnit,
-  getBestEnergyUnit
+  // getBestFrequencyUnit,
+  // getBestEnergyUnit
 } from '../utils/unitConversions.js';
 
 import { getRegionByWavelength } from '../data/spectrumData.js';
@@ -108,7 +108,7 @@ export function runErrorHandlingTests() {
   try {
     const result = wavelengthToFrequency(0);
     test1Pass = !isFinite(result) || result === Infinity;
-  } catch (error) {
+  } catch {
     test1Pass = true; // Expected to throw or return invalid result
   }
   tests.push({
@@ -122,7 +122,7 @@ export function runErrorHandlingTests() {
   try {
     const result = wavelengthToEnergyEV(-1e-9);
     test2Pass = !isFinite(result) || result <= 0;
-  } catch (error) {
+  } catch {
     test2Pass = true;
   }
   tests.push({
@@ -136,7 +136,7 @@ export function runErrorHandlingTests() {
   try {
     const result = wavelengthToFrequency(1e20);
     test3Pass = isFinite(result) && result > 0;
-  } catch (error) {
+  } catch {
     test3Pass = false;
   }
   tests.push({
@@ -150,7 +150,7 @@ export function runErrorHandlingTests() {
   try {
     const result = formatWavelength(NaN);
     test4Pass = typeof result === 'string' && result.includes('Invalid');
-  } catch (error) {
+  } catch {
     test4Pass = true; // Expected to handle gracefully
   }
   tests.push({
@@ -164,7 +164,7 @@ export function runErrorHandlingTests() {
   try {
     const result = convertWavelength(0, 'nm', 'm');
     test5Pass = result === 0;
-  } catch (error) {
+  } catch {
     test5Pass = false;
   }
   tests.push({
