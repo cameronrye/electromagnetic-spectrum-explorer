@@ -32,15 +32,16 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
     const width = rect.width;
     const clickRatio = x / width; // 0 to 1 from left to right
 
-    // Define the same regions as in calculateIndicatorPosition
+    // Define the same regions as in calculateIndicatorPosition and visual layout
+    // Ordered from shortest to longest wavelength (left to right)
     const regions = [
-      { name: 'Radio', flex: 20, minWl: 1e-1, maxWl: 1e4 },
-      { name: 'Microwave', flex: 10, minWl: 1e-3, maxWl: 1e-1 },
-      { name: 'Infrared', flex: 15, minWl: 700e-9, maxWl: 1e-3 },
-      { name: 'Visible', flex: 5, minWl: 380e-9, maxWl: 700e-9 },
-      { name: 'UV', flex: 10, minWl: 10e-9, maxWl: 380e-9 },
-      { name: 'X-ray', flex: 15, minWl: 10e-12, maxWl: 10e-9 },
-      { name: 'Gamma', flex: 25, minWl: 1e-15, maxWl: 10e-12 }
+      { name: 'Gamma', flex: 25, minWl: 1e-15, maxWl: 10e-12 },   // 1fm to 10pm
+      { name: 'X-ray', flex: 15, minWl: 10e-12, maxWl: 10e-9 },  // 10pm to 10nm
+      { name: 'UV', flex: 10, minWl: 10e-9, maxWl: 380e-9 },     // 10nm to 380nm
+      { name: 'Visible', flex: 5, minWl: 380e-9, maxWl: 700e-9 }, // 380nm to 700nm
+      { name: 'Infrared', flex: 15, minWl: 700e-9, maxWl: 1e-3 }, // 700nm to 1mm
+      { name: 'Microwave', flex: 10, minWl: 1e-3, maxWl: 1e-1 }, // 1mm to 10cm
+      { name: 'Radio', flex: 20, minWl: 1e-1, maxWl: 1e4 }       // 10cm to 10km
     ];
 
     const totalFlex = regions.reduce((sum, region) => sum + region.flex, 0);
@@ -59,10 +60,9 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
         const minLog = Math.log10(region.minWl);
         const maxLog = Math.log10(region.maxWl);
 
-        // For regions where wavelength decreases left to right, invert the position
-        const adjustedPosition = (i >= 2) ? (1 - positionInRegion) : positionInRegion;
-
-        const wavelength = Math.pow(10, minLog + adjustedPosition * (maxLog - minLog));
+        // Since regions are ordered from shortest to longest wavelength,
+        // wavelength increases left to right within each region - no inversion needed
+        const wavelength = Math.pow(10, minLog + positionInRegion * (maxLog - minLog));
 
         onWavelengthChange(wavelength);
         return;

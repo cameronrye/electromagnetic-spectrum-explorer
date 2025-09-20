@@ -1,11 +1,12 @@
 // Comprehensive user interaction and input validation testing
 import { getRegionByWavelength } from '../data/spectrumData.js';
-import { 
-  wavelengthToFrequency, 
+import {
+  wavelengthToFrequency,
   wavelengthToEnergyEV,
   frequencyToWavelength,
   energyEVToWavelength
 } from '../utils/physicsCalculations.js';
+import { runClickPositionConsistencyTest } from './clickPositionTest.js';
 
 // Test spectrum bar clicking simulation
 export function runSpectrumClickTests() {
@@ -24,14 +25,15 @@ export function runSpectrumClickTests() {
   ];
   
   // Define spectrum regions matching SimpleSpectrum layout
+  // Ordered from shortest to longest wavelength (left to right)
   const regions = [
-    { name: 'Radio', flex: 20, minWl: 1e-1, maxWl: 1e4 },
-    { name: 'Microwave', flex: 10, minWl: 1e-3, maxWl: 1e-1 },
-    { name: 'Infrared', flex: 15, minWl: 700e-9, maxWl: 1e-3 },
-    { name: 'Visible', flex: 5, minWl: 380e-9, maxWl: 700e-9 },
-    { name: 'UV', flex: 10, minWl: 10e-9, maxWl: 380e-9 },
-    { name: 'X-ray', flex: 15, minWl: 10e-12, maxWl: 10e-9 },
-    { name: 'Gamma', flex: 25, minWl: 1e-15, maxWl: 10e-12 }
+    { name: 'Gamma', flex: 25, minWl: 1e-15, maxWl: 10e-12 },   // 1fm to 10pm
+    { name: 'X-ray', flex: 15, minWl: 10e-12, maxWl: 10e-9 },  // 10pm to 10nm
+    { name: 'UV', flex: 10, minWl: 10e-9, maxWl: 380e-9 },     // 10nm to 380nm
+    { name: 'Visible', flex: 5, minWl: 380e-9, maxWl: 700e-9 }, // 380nm to 700nm
+    { name: 'Infrared', flex: 15, minWl: 700e-9, maxWl: 1e-3 }, // 700nm to 1mm
+    { name: 'Microwave', flex: 10, minWl: 1e-3, maxWl: 1e-1 }, // 1mm to 10cm
+    { name: 'Radio', flex: 20, minWl: 1e-1, maxWl: 1e4 }       // 10cm to 10km
   ];
   
   // Simulate click-to-wavelength conversion
@@ -48,8 +50,9 @@ export function runSpectrumClickTests() {
         const positionInRegion = (clickRatio - cumulativeRatio) / regionWidth;
         const minLog = Math.log10(region.minWl);
         const maxLog = Math.log10(region.maxWl);
-        const adjustedPosition = (i >= 2) ? (1 - positionInRegion) : positionInRegion;
-        const wavelength = Math.pow(10, minLog + adjustedPosition * (maxLog - minLog));
+        // Since regions are ordered from shortest to longest wavelength,
+        // wavelength increases left to right within each region - no inversion needed
+        const wavelength = Math.pow(10, minLog + positionInRegion * (maxLog - minLog));
         
         return { wavelength, regionName: region.name };
       }
@@ -316,13 +319,22 @@ export function runInteractionErrorTests() {
 // Run all user interaction tests
 export async function runAllUserInteractionTests() {
   console.log('👤 Starting User Interaction Test Suite\n');
-  
+
   const clickTests = runSpectrumClickTests();
   const validationTests = runInputValidationTests();
   const updateTests = runRealTimeUpdateTests();
   const errorTests = runInteractionErrorTests();
-  
-  const allTests = [...clickTests, ...validationTests, ...updateTests, ...errorTests];
+
+  // Run the new click position consistency test
+  const clickPositionResult = runClickPositionConsistencyTest();
+  const clickPositionTest = [{
+    name: 'Click Position Consistency',
+    pass: clickPositionResult.passed,
+    details: clickPositionResult.summary,
+    critical: true
+  }];
+
+  const allTests = [...clickTests, ...validationTests, ...updateTests, ...errorTests, ...clickPositionTest];
   
   // Print results
   console.log('\n=== User Interaction Test Results ===');
