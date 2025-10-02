@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getRegionByWavelength, SPECTRUM_REGIONS } from '../data/spectrumData.js';
 
 /**
@@ -150,4 +151,10 @@ function SimpleEducationalPanel({ selectedWavelength, onWavelengthChange }) {
   );
 }
 
-export default SimpleEducationalPanel;
+SimpleEducationalPanel.propTypes = {
+  selectedWavelength: PropTypes.number.isRequired,
+  onWavelengthChange: PropTypes.func.isRequired
+};
+
+// Memoize component to prevent unnecessary re-renders
+export default React.memo(SimpleEducationalPanel);

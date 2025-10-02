@@ -1,0 +1,98 @@
+/* Footer styles */
+.app-footer {
+  width: 100%;
+  padding: var(--spacing-xl) var(--spacing-md);
+  background: var(--theme-surface);
+  border-top: 1px solid var(--theme-border);
+  margin-top: var(--spacing-2xl);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.footer-copyright,
+.footer-made-with {
+  margin: var(--spacing-sm) 0;
+  color: var(--theme-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.footer-link {
+  color: var(--theme-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--theme-primary-hover);
+  text-decoration: underline;
+}
+
+.footer-link:focus {
+  outline: 2px solid var(--theme-focus);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.heart {
+  display: inline-block;
+  color: #ef4444;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* Heartbeat animation */
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  10%, 30% {
+    transform: scale(1.1);
+  }
+  20%, 40% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app-footer {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+  
+  .footer-copyright,
+  .footer-made-with {
+    font-size: 0.85rem;
+  }
+}
+
+/* Light theme adjustments */
+:root.light .app-footer {
+  background: #f8fafc;
+  border-top-color: #e2e8f0;
+}
+
+:root.light .footer-copyright,
+:root.light .footer-made-with {
+  color: #1e293b;
+}
+
+:root.light .footer-link {
+  color: #2563eb;
+}
+
+:root.light .footer-link:hover {
+  color: #1d4ed8;
+}
+
+/* Dark theme adjustments */
+:root.dark .app-footer {
+  background: var(--theme-surface);
+  border-top-color: var(--theme-border);
+}
+

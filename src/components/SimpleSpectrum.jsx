@@ -1,5 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getRegionByWavelength } from '../data/spectrumData.js';
+import {
+  WAVELENGTH_BOUNDS,
+  KEYBOARD_NAV,
+  SPECTRUM_VISUAL,
+  REGION_FLEX_WEIGHTS,
+  FORMATTING_PRECISION,
+  Z_INDEX,
+  OPACITY,
+  GRADIENT_OPACITY,
+  CONVERSION_FACTORS
+} from '../constants/ui.js';
 import './SimpleSpectrum.css';
 
 /**
@@ -24,6 +36,43 @@ import './SimpleSpectrum.css';
 function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
   // These variables and functions are kept for potential future use
   // in enhanced spectrum visualization features
+
+  // Handle keyboard navigation
+  const handleKeyDown = (e) => {
+    const step = e.shiftKey ? KEYBOARD_NAV.SHIFT_STEP : KEYBOARD_NAV.NORMAL_STEP;
+    let newWavelength = selectedWavelength;
+
+    switch (e.key) {
+      case 'ArrowLeft':
+      case 'ArrowDown':
+        // Decrease wavelength (move towards shorter wavelengths)
+        newWavelength = selectedWavelength / (1 + step * KEYBOARD_NAV.STEP_MULTIPLIER);
+        e.preventDefault();
+        break;
+      case 'ArrowRight':
+      case 'ArrowUp':
+        // Increase wavelength (move towards longer wavelengths)
+        newWavelength = selectedWavelength * (1 + step * KEYBOARD_NAV.STEP_MULTIPLIER);
+        e.preventDefault();
+        break;
+      case 'Home':
+        // Jump to gamma rays (shortest wavelength)
+        newWavelength = 1e-12;
+        e.preventDefault();
+        break;
+      case 'End':
+        // Jump to radio waves (longest wavelength)
+        newWavelength = 1e2;
+        e.preventDefault();
+        break;
+      default:
+        return;
+    }
+
+    // Clamp to reasonable bounds
+    newWavelength = Math.max(WAVELENGTH_BOUNDS.MIN, Math.min(WAVELENGTH_BOUNDS.MAX, newWavelength));
+    onWavelengthChange(newWavelength);
+  };
 
   // Handle click on spectrum bar
   const handleSpectrumClick = (e) => {
@@ -136,24 +185,32 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
       <div style={{ position: 'relative', marginBottom: '1rem' }}>
         <div
           className="spectrum-bar"
+          role="slider"
+          aria-label="Electromagnetic spectrum wavelength selector"
+          aria-valuemin={WAVELENGTH_BOUNDS.MIN}
+          aria-valuemax={WAVELENGTH_BOUNDS.MAX}
+          aria-valuenow={selectedWavelength}
+          aria-valuetext={`${(selectedWavelength * CONVERSION_FACTORS.METERS_TO_NANOMETERS).toFixed(FORMATTING_PRECISION.WAVELENGTH_NM)} nanometers, ${region ? region.name : 'Unknown region'}`}
+          tabIndex={0}
           style={{
             display: 'flex',
-            height: '60px',
-            border: '2px solid var(--theme-border)',
-            borderRadius: '8px',
+            height: `${SPECTRUM_VISUAL.BAR_HEIGHT}px`,
+            border: `${SPECTRUM_VISUAL.BORDER_WIDTH}px solid var(--theme-border)`,
+            borderRadius: `${SPECTRUM_VISUAL.BORDER_RADIUS}px`,
             overflow: 'hidden',
             cursor: 'pointer',
             boxShadow: 'var(--shadow-sm)',
             transition: 'all 0.2s ease'
           }}
           onClick={handleSpectrumClick}
+          onKeyDown={handleKeyDown}
         >
 
         {/* Gamma rays */}
         <div
           className="spectrum-region"
           style={{
-            flex: '25',
+            flex: REGION_FLEX_WEIGHTS.GAMMA,
             backgroundColor: '#B19CD9',
             display: 'flex',
             alignItems: 'center',
@@ -170,7 +227,7 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
         <div
           className="spectrum-region"
           style={{
-            flex: '15',
+            flex: REGION_FLEX_WEIGHTS.XRAY,
             backgroundColor: '#DDA0DD',
             display: 'flex',
             alignItems: 'center',
@@ -187,7 +244,7 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
         <div
           className="spectrum-region"
           style={{
-            flex: '10',
+            flex: REGION_FLEX_WEIGHTS.ULTRAVIOLET,
             backgroundColor: '#FFEAA7',
             display: 'flex',
             alignItems: 'center',
@@ -204,7 +261,7 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
         <div
           className="spectrum-region"
           style={{
-            flex: '5',
+            flex: REGION_FLEX_WEIGHTS.VISIBLE,
             background: 'linear-gradient(to right, #8B00FF, #0000FF, #00FF00, #FFFF00, #FFA500, #FF0000)',
             display: 'flex',
             alignItems: 'center',
@@ -222,7 +279,7 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
         <div
           className="spectrum-region"
           style={{
-            flex: '15',
+            flex: REGION_FLEX_WEIGHTS.INFRARED,
             backgroundColor: '#45B7D1',
             display: 'flex',
             alignItems: 'center',
@@ -239,7 +296,7 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
         <div
           className="spectrum-region"
           style={{
-            flex: '10',
+            flex: REGION_FLEX_WEIGHTS.MICROWAVE,
             backgroundColor: '#4ECDC4',
             display: 'flex',
             alignItems: 'center',
@@ -256,7 +313,7 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
         <div
           className="spectrum-region"
           style={{
-            flex: '20',
+            flex: REGION_FLEX_WEIGHTS.RADIO,
             backgroundColor: '#FF6B6B',
             display: 'flex',
             alignItems: 'center',
@@ -276,7 +333,7 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
           left: `${indicatorPosition}%`,
           top: '-8px',
           transform: 'translateX(-50%)',
-          zIndex: 10,
+          zIndex: Z_INDEX.INDICATOR_ARROW,
           pointerEvents: 'none'
         }}>
           {/* Indicator arrow pointing down */}
@@ -285,9 +342,9 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
             style={{
               width: 0,
               height: 0,
-              borderLeft: '8px solid transparent',
-              borderRight: '8px solid transparent',
-              borderTop: '12px solid var(--theme-primary)',
+              borderLeft: `${SPECTRUM_VISUAL.INDICATOR_ARROW_SIZE}px solid transparent`,
+              borderRight: `${SPECTRUM_VISUAL.INDICATOR_ARROW_SIZE}px solid transparent`,
+              borderTop: `${SPECTRUM_VISUAL.INDICATOR_ARROW_HEIGHT}px solid var(--theme-primary)`,
               filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.2))'
             }}
           ></div>
@@ -301,14 +358,14 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
             left: `${indicatorPosition}%`,
             top: '4px',
             bottom: '4px',
-            width: '3px',
+            width: `${SPECTRUM_VISUAL.INDICATOR_WIDTH}px`,
             backgroundColor: 'var(--theme-primary)',
             transform: 'translateX(-50%)',
-            zIndex: 5,
+            zIndex: Z_INDEX.INDICATOR_LINE,
             borderRadius: '2px',
             boxShadow: '0 0 8px rgba(59, 130, 246, 0.6)',
             pointerEvents: 'none',
-            opacity: 0.9
+            opacity: OPACITY.INDICATOR_LINE
           }}
         ></div>
 
@@ -318,14 +375,14 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
           left: `${indicatorPosition}%`,
           bottom: '-8px',
           transform: 'translateX(-50%)',
-          zIndex: 10,
+          zIndex: Z_INDEX.INDICATOR_DOT,
           pointerEvents: 'none'
         }}>
           <div
             className="wavelength-indicator-dot"
             style={{
-              width: '12px',
-              height: '12px',
+              width: `${SPECTRUM_VISUAL.INDICATOR_DOT_SIZE}px`,
+              height: `${SPECTRUM_VISUAL.INDICATOR_DOT_SIZE}px`,
               backgroundColor: 'var(--theme-primary)',
               borderRadius: '50%',
               border: '2px solid var(--theme-surface)',
@@ -339,7 +396,7 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
       <div style={{
         padding: 'var(--spacing-md)',
         background: region ?
-          `linear-gradient(135deg, ${region.color}dd, ${region.color}aa)` :
+          `linear-gradient(135deg, ${region.color}${Math.round(GRADIENT_OPACITY.START * 255).toString(16)}, ${region.color}${Math.round(GRADIENT_OPACITY.END * 255).toString(16)})` :
           'var(--theme-background-secondary)',
         color: region && ['#FFEAA7'].includes(region.color) ?
           'var(--theme-text-primary)' :
@@ -361,14 +418,14 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
         </div>
         <div style={{
           fontSize: '0.9rem',
-          opacity: 0.9,
+          opacity: OPACITY.INDICATOR_LINE,
           fontFamily: 'monospace',
           fontWeight: '500'
         }}>
-          λ = {(selectedWavelength * 1e9).toFixed(1)} nm
+          λ = {(selectedWavelength * CONVERSION_FACTORS.METERS_TO_NANOMETERS).toFixed(FORMATTING_PRECISION.WAVELENGTH_NM)} nm
           {region && (
             <span style={{ marginLeft: 'var(--spacing-sm)' }}>
-              • Position: {indicatorPosition.toFixed(1)}%
+              • Position: {indicatorPosition.toFixed(FORMATTING_PRECISION.POSITION_PERCENT)}%
             </span>
           )}
         </div>
@@ -388,4 +445,10 @@ function SimpleSpectrum({ selectedWavelength, onWavelengthChange }) {
   );
 }
 
-export default SimpleSpectrum;
+SimpleSpectrum.propTypes = {
+  selectedWavelength: PropTypes.number.isRequired,
+  onWavelengthChange: PropTypes.func.isRequired
+};
+
+// Memoize component to prevent unnecessary re-renders
+export default React.memo(SimpleSpectrum);

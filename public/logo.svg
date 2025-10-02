@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- Rainbow spectrum gradient -->
+    <linearGradient id="spectrumGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF0000;stop-opacity:1" />
+      <stop offset="16.67%" style="stop-color:#FF7F00;stop-opacity:1" />
+      <stop offset="33.33%" style="stop-color:#FFFF00;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00FF00;stop-opacity:1" />
+      <stop offset="66.67%" style="stop-color:#0000FF;stop-opacity:1" />
+      <stop offset="83.33%" style="stop-color:#4B0082;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#9400D3;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Radial gradient for depth -->
+    <radialGradient id="radialSpectrum" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </radialGradient>
+    
+    <!-- Wave gradient -->
+    <linearGradient id="waveGradient" x1="0%" y1="50%" x2="100%" y2="50%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
+      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle with spectrum gradient -->
+  <circle cx="256" cy="256" r="240" fill="url(#radialSpectrum)" />
+  
+  <!-- Outer ring with rainbow gradient -->
+  <circle cx="256" cy="256" r="240" fill="none" stroke="url(#spectrumGradient)" stroke-width="32" opacity="0.8" />
+  
+  <!-- Electromagnetic wave patterns -->
+  <!-- Wave 1 - Low frequency (long wavelength) -->
+  <path d="M 100 256 Q 140 200, 180 256 T 260 256 T 340 256 T 420 256" 
+        fill="none" 
+        stroke="url(#waveGradient)" 
+        stroke-width="6" 
+        stroke-linecap="round"
+        opacity="0.7" />
+  
+  <!-- Wave 2 - Medium frequency -->
+  <path d="M 100 256 Q 125 220, 150 256 T 200 256 T 250 256 T 300 256 T 350 256 T 400 256" 
+        fill="none" 
+        stroke="url(#waveGradient)" 
+        stroke-width="5" 
+        stroke-linecap="round"
+        opacity="0.6" />
+  
+  <!-- Wave 3 - High frequency (short wavelength) -->
+  <path d="M 100 256 Q 115 235, 130 256 T 160 256 T 190 256 T 220 256 T 250 256 T 280 256 T 310 256 T 340 256 T 370 256 T 400 256" 
+        fill="none" 
+        stroke="url(#waveGradient)" 
+        stroke-width="4" 
+        stroke-linecap="round"
+        opacity="0.5" />
+  
+  <!-- Central energy burst -->
+  <circle cx="256" cy="256" r="60" fill="url(#spectrumGradient)" opacity="0.3" />
+  <circle cx="256" cy="256" r="40" fill="#ffffff" opacity="0.8" />
+  <circle cx="256" cy="256" r="25" fill="url(#radialSpectrum)" opacity="0.9" />
+  
+  <!-- Energy particles/photons -->
+  <circle cx="256" cy="180" r="8" fill="#ffffff" opacity="0.7" />
+  <circle cx="320" cy="220" r="6" fill="#ffffff" opacity="0.6" />
+  <circle cx="190" cy="220" r="7" fill="#ffffff" opacity="0.65" />
+  <circle cx="256" cy="330" r="8" fill="#ffffff" opacity="0.7" />
+  <circle cx="320" cy="290" r="6" fill="#ffffff" opacity="0.6" />
+  <circle cx="190" cy="290" r="7" fill="#ffffff" opacity="0.65" />
+</svg>
+

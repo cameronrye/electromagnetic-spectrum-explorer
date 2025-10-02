@@ -1,11 +1,15 @@
-# Electromagnetic Spectrum Explorer
+<div align="center">
+  <img src="public/logo.svg" alt="Electromagnetic Spectrum Explorer Logo" width="200" height="200">
 
-An interactive web application for exploring the electromagnetic spectrum from radio waves to gamma rays. This educational tool provides real-time visualization, unit conversion, and comprehensive information about each region of the electromagnetic spectrum.
+  # Electromagnetic Spectrum Explorer
 
-[![Deploy to GitHub Pages](https://github.com/cameronrye/electromagnetic-spectrum-explorer/actions/workflows/deploy.yml/badge.svg)](https://github.com/cameronrye/electromagnetic-spectrum-explorer/actions/workflows/deploy.yml)
-[![React](https://img.shields.io/badge/React-19-blue)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-Latest-green)](https://vitejs.dev/)
-[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+  An interactive web application for exploring the electromagnetic spectrum from radio waves to gamma rays. This educational tool provides real-time visualization, unit conversion, and comprehensive information about each region of the electromagnetic spectrum.
+
+  [![Deploy to GitHub Pages](https://github.com/cameronrye/electromagnetic-spectrum-explorer/actions/workflows/deploy.yml/badge.svg)](https://github.com/cameronrye/electromagnetic-spectrum-explorer/actions/workflows/deploy.yml)
+  [![React](https://img.shields.io/badge/React-19-blue)](https://reactjs.org/)
+  [![Vite](https://img.shields.io/badge/Vite-Latest-green)](https://vitejs.dev/)
+  [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+</div>
 
 ## 🌐 Live Demo
 
@@ -115,6 +119,12 @@ MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-**Built with ❤️ for science education and electromagnetic spectrum exploration**
+<div align="center">
+
+**Made with ❤️**
+
+Copyright © 2025 [Cameron Rye](https://rye.dev/)
 
 *For complete documentation, visit the **[Documentation Hub](docs/README.md)***
+
+</div>
