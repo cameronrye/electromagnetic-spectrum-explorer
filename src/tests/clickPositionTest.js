@@ -77,7 +77,7 @@ export function runClickPositionConsistencyTest() {
   let allTestsPassed = true;
   const results = [];
 
-  testPositions.forEach((clickRatio, index) => {
+  testPositions.forEach((clickRatio) => {
     // Convert click position to percentage
     const clickPositionPercent = clickRatio * 100;
     

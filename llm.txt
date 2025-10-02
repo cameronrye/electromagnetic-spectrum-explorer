@@ -1,0 +1,358 @@
+# Electromagnetic Spectrum Explorer - LLM Context Guide
+
+## Project Overview
+
+The Electromagnetic Spectrum Explorer is an interactive web application designed to help users explore and understand electromagnetic radiation across the entire spectrum, from radio waves to gamma rays. This educational tool provides real-time visualization, unit conversion, and comprehensive scientific information about each region of the electromagnetic spectrum.
+
+**Live Demo**: https://cameronrye.github.io/electromagnetic-spectrum-explorer/
+**Repository**: https://github.com/cameronrye/electromagnetic-spectrum-explorer
+
+---
+
+## Scientific Background: The Electromagnetic Spectrum
+
+### What is the Electromagnetic Spectrum?
+
+The electromagnetic (EM) spectrum is the complete range of all types of electromagnetic radiation. Electromagnetic radiation consists of waves of electric and magnetic fields that propagate through space at the speed of light. These waves are characterized by their wavelength, frequency, and energy, which are all mathematically related.
+
+### Fundamental Physics Relationships
+
+All electromagnetic radiation follows these fundamental relationships:
+
+1. **Speed of Light Equation**: `c = λ × f`
+   - c = speed of light (299,792,458 m/s)
+   - λ (lambda) = wavelength in meters
+   - f = frequency in Hertz (Hz)
+
+2. **Photon Energy Equation**: `E = h × f = (h × c) / λ`
+   - E = energy in Joules or electron volts (eV)
+   - h = Planck's constant (6.62607015 × 10⁻³⁴ J⋅s or 4.135667696 × 10⁻¹⁵ eV⋅s)
+   - f = frequency in Hz
+   - c = speed of light
+   - λ = wavelength in meters
+
+3. **Inverse Relationships**:
+   - Wavelength and frequency are inversely proportional (shorter wavelength = higher frequency)
+   - Wavelength and energy are inversely proportional (shorter wavelength = higher energy)
+   - Frequency and energy are directly proportional (higher frequency = higher energy)
+
+### The Seven Regions of the Electromagnetic Spectrum
+
+Listed from highest energy (shortest wavelength) to lowest energy (longest wavelength):
+
+#### 1. Gamma Rays
+- **Wavelength Range**: < 10 picometers (pm) [< 10 × 10⁻¹² m]
+- **Frequency Range**: > 30 exahertz (EHz) [> 3 × 10¹⁹ Hz]
+- **Energy Range**: > 124 keV (kilo-electron volts)
+- **Characteristics**: Most energetic form of EM radiation, produced by radioactive decay and cosmic events
+- **Applications**: Cancer treatment, medical imaging (PET scans), sterilization, astronomy
+- **Sources**: Radioactive materials, nuclear reactions, supernovae, black holes
+
+#### 2. X-rays
+- **Wavelength Range**: 10 pm to 10 nanometers (nm) [10 × 10⁻¹² m to 10 × 10⁻⁹ m]
+- **Frequency Range**: 30 petahertz (PHz) to 30 EHz [3 × 10¹⁶ Hz to 3 × 10¹⁹ Hz]
+- **Energy Range**: 124 eV to 124 keV
+- **Characteristics**: High energy radiation that penetrates soft tissue but is absorbed by dense materials like bone
+- **Applications**: Medical imaging, security screening, crystallography, materials analysis
+- **Sources**: X-ray tubes, synchrotrons, astronomical objects
+
+#### 3. Ultraviolet (UV)
+- **Wavelength Range**: 10 nm to 380 nm [10 × 10⁻⁹ m to 380 × 10⁻⁹ m]
+- **Frequency Range**: 790 terahertz (THz) to 30 PHz [7.9 × 10¹⁴ Hz to 3 × 10¹⁶ Hz]
+- **Energy Range**: 3.26 eV to 124 eV
+- **Characteristics**: Invisible to human eyes, causes sunburn, can damage DNA
+- **Applications**: Sterilization, fluorescence, vitamin D production, forensics
+- **Sources**: Sun, UV lamps, black lights, welding arcs
+
+#### 4. Visible Light
+- **Wavelength Range**: 380 nm to 700 nm [380 × 10⁻⁹ m to 700 × 10⁻⁹ m]
+- **Frequency Range**: 430 THz to 790 THz [4.3 × 10¹⁴ Hz to 7.9 × 10¹⁴ Hz]
+- **Energy Range**: 1.77 eV to 3.26 eV
+- **Characteristics**: The only part of the EM spectrum visible to human eyes
+- **Color Spectrum** (approximate):
+  - Violet: 380-450 nm
+  - Blue: 450-495 nm
+  - Green: 495-570 nm
+  - Yellow: 570-590 nm
+  - Orange: 590-620 nm
+  - Red: 620-700 nm
+- **Applications**: Vision, photography, optical communications, lasers, solar energy
+- **Sources**: Sun, light bulbs, LEDs, lasers, fire
+
+#### 5. Infrared (IR)
+- **Wavelength Range**: 700 nm to 1 millimeter (mm) [700 × 10⁻⁹ m to 1 × 10⁻³ m]
+- **Frequency Range**: 300 gigahertz (GHz) to 430 THz [3 × 10¹¹ Hz to 4.3 × 10¹⁴ Hz]
+- **Energy Range**: 0.00124 eV to 1.77 eV
+- **Characteristics**: Felt as heat, invisible to human eyes but detectable by specialized cameras
+- **Subdivisions**: Near-IR, Mid-IR, Far-IR
+- **Applications**: Thermal imaging, night vision, remote controls, heating, astronomy
+- **Sources**: Warm objects, infrared lamps, lasers
+
+#### 6. Microwaves
+- **Wavelength Range**: 1 mm to 1 meter (m) [1 × 10⁻³ m to 1 m]
+- **Frequency Range**: 300 megahertz (MHz) to 300 GHz [3 × 10⁸ Hz to 3 × 10¹¹ Hz]
+- **Energy Range**: 1.24 × 10⁻⁶ eV to 0.00124 eV
+- **Characteristics**: Used for heating food (causes water molecules to vibrate), penetrates clouds
+- **Applications**: Microwave ovens, radar, satellite communications, wireless networks
+- **Sources**: Microwave ovens, radar transmitters, satellites, cosmic microwave background
+
+#### 7. Radio Waves
+- **Wavelength Range**: > 1 meter [> 1 m, can extend to kilometers]
+- **Frequency Range**: < 300 MHz [< 3 × 10⁸ Hz]
+- **Energy Range**: < 1.24 × 10⁻⁶ eV
+- **Characteristics**: Longest wavelengths, lowest energy, can travel long distances
+- **Subdivisions**: AM radio, FM radio, TV, shortwave, longwave
+- **Applications**: Broadcasting, communications, radio astronomy, navigation
+- **Sources**: Radio transmitters, astronomical objects, lightning
+
+---
+
+## Application Features
+
+### 1. Interactive Spectrum Visualization
+
+The application displays a color-coded visual representation of the entire electromagnetic spectrum:
+
+- **Logarithmic Scaling**: Uses logarithmic scale to display the enormous range of wavelengths (from femtometers to kilometers)
+- **Clickable Regions**: Users can click anywhere on the spectrum bar to jump to that wavelength
+- **Real-time Indicator**: Shows current selection with a visual arrow and line
+- **Color-Coded Regions**: Each region has a distinct color for easy identification
+- **Responsive Design**: Adapts to different screen sizes (desktop and mobile)
+
+### 2. Real-time Unit Conversion
+
+Three synchronized input fields allow conversion between:
+
+- **Wavelength** (in nanometers, nm)
+- **Frequency** (in terahertz, THz)
+- **Energy** (in electron volts, eV)
+
+When any value is changed, the other two update automatically using the fundamental physics equations. All calculations use NIST-certified physics constants for scientific accuracy.
+
+### 3. Educational Content Panel
+
+For each selected wavelength, the application displays:
+
+- **Region Information**: Name and description of the current EM region
+- **Applications**: Real-world uses of that type of radiation
+- **Examples**: Specific examples with actual values
+- **Quick Region Navigation**: Buttons to jump to any of the seven regions
+- **Fun Facts**: Interesting scientific facts about each region
+
+### 4. Theme Support
+
+- **Light and Dark Modes**: User-selectable themes for comfortable viewing
+- **Persistent Preferences**: Theme choice is saved in browser localStorage
+- **Accessible Design**: High contrast and ARIA labels for screen readers
+
+### 5. User Interactions
+
+Users can explore the spectrum by:
+1. Clicking on the spectrum visualization bar
+2. Entering specific wavelength values
+3. Entering specific frequency values
+4. Entering specific energy values
+5. Using quick navigation buttons to jump to specific regions
+6. Keyboard navigation support for accessibility
+
+---
+
+## Technical Implementation
+
+### Technology Stack
+
+- **Frontend Framework**: React 19.1.1 (functional components with hooks)
+- **Build Tool**: Vite 7.1.6 (fast development and optimized production builds)
+- **Language**: JavaScript (ES6+)
+- **Styling**: CSS with CSS custom properties (variables) for theming
+- **Testing**: Vitest with React Testing Library
+- **Deployment**: GitHub Pages with automated CI/CD
+
+### Architecture Overview
+
+The application follows a modern React architecture with:
+
+1. **Functional Components**: All components use React hooks (no class components)
+2. **Unidirectional Data Flow**: Single source of truth for selected wavelength
+3. **Pure Functions**: All physics calculations are pure functions with no side effects
+4. **Context API**: Theme management using React Context
+5. **Separation of Concerns**: Clear separation between UI, logic, and data
+
+### Key Components
+
+#### App.jsx
+- Root component that manages global state
+- Maintains `selectedWavelength` as the primary state (in meters)
+- Coordinates all child components
+- Provides theme context
+
+#### SimpleSpectrum.jsx
+- Renders the interactive spectrum visualization bar
+- Handles click events to change wavelength
+- Displays current position indicator
+- Uses logarithmic positioning for accurate representation
+
+#### SimpleConversionPanel.jsx
+- Provides three synchronized input fields (wavelength, frequency, energy)
+- Converts user input to wavelength in meters
+- Updates global state when values change
+- Displays values with appropriate precision
+
+#### SimpleEducationalPanel.jsx
+- Displays information about the current spectrum region
+- Shows applications and examples
+- Provides quick navigation buttons
+- Renders "Did You Know?" facts
+
+#### ThemeSwitcher.jsx
+- Allows users to toggle between light and dark themes
+- Persists theme preference to localStorage
+- Updates CSS custom properties
+
+### Physics Calculations (src/utils/physicsCalculations.js)
+
+All calculations use NIST 2018 physics constants:
+
+```javascript
+SPEED_OF_LIGHT: 299792458 m/s
+PLANCK_CONSTANT: 6.62607015e-34 J⋅s
+PLANCK_CONSTANT_EV: 4.135667696e-15 eV⋅s
+ELECTRON_VOLT: 1.602176634e-19 J
+```
+
+Key functions:
+- `wavelengthToFrequency(wavelength)`: Converts wavelength to frequency using c = λf
+- `frequencyToWavelength(frequency)`: Converts frequency to wavelength
+- `wavelengthToEnergyEV(wavelength)`: Converts wavelength to energy in eV
+- `energyEVToWavelength(energy)`: Converts energy to wavelength
+- `getLogPosition(value, min, max)`: Calculates logarithmic position for visualization
+- Format functions for displaying values with appropriate units
+
+### Data Structure (src/data/spectrumData.js)
+
+The `SPECTRUM_REGIONS` array contains objects for each of the seven regions:
+
+```javascript
+{
+  id: string,              // Unique identifier
+  name: string,            // Display name
+  color: string,           // Hex color code
+  wavelengthMin: number,   // Minimum wavelength in meters
+  wavelengthMax: number,   // Maximum wavelength in meters
+  frequencyMin: number,    // Minimum frequency in Hz
+  frequencyMax: number,    // Maximum frequency in Hz
+  energyMin: number,       // Minimum energy in eV
+  energyMax: number,       // Maximum energy in eV
+  description: string,     // Scientific description
+  applications: string[],  // Array of real-world applications
+  examples: string[]       // Array of specific examples
+}
+```
+
+### Project Structure
+
+```
+electromagnetic-spectrum-explorer/
+├── src/
+│   ├── components/          # React components
+│   │   ├── SimpleSpectrum.jsx
+│   │   ├── SimpleConversionPanel.jsx
+│   │   ├── SimpleEducationalPanel.jsx
+│   │   └── ThemeSwitcher.jsx
+│   ├── contexts/            # React contexts (theme)
+│   ├── data/                # Scientific data and constants
+│   │   └── spectrumData.js
+│   ├── utils/               # Utility functions
+│   │   ├── physicsCalculations.js
+│   │   ├── unitConversions.js
+│   │   └── errorHandling.js
+│   ├── tests/               # Test files
+│   ├── App.jsx              # Root component
+│   ├── main.jsx             # Entry point
+│   └── index.css            # Global styles
+├── docs/                    # Comprehensive documentation
+├── public/                  # Static assets
+├── dist/                    # Production build output
+└── package.json             # Dependencies and scripts
+```
+
+### State Management
+
+- **Primary State**: `selectedWavelength` (number in meters) stored in App component
+- **Derived Values**: Frequency and energy are calculated on-demand from wavelength
+- **Theme State**: Managed by ThemeContext, persisted to localStorage
+- **No External State Management**: Uses React's built-in state and context (no Redux/MobX)
+
+### Performance Considerations
+
+- Pure function calculations are fast and predictable
+- Logarithmic scaling allows smooth visualization across 20+ orders of magnitude
+- Minimal re-renders through proper component structure
+- Optimized production build with Vite
+
+---
+
+## Target Audience and Use Cases
+
+### Primary Audiences
+
+1. **Students**: Learning about electromagnetic radiation, physics, and optics
+2. **Educators**: Teaching electromagnetic spectrum concepts with interactive visualization
+3. **Researchers**: Quick reference for wavelength/frequency/energy conversions
+4. **General Public**: Anyone curious about electromagnetic radiation
+
+### Common Use Cases
+
+1. **Education**: Understanding the relationship between wavelength, frequency, and energy
+2. **Conversion**: Converting between different units of electromagnetic radiation
+3. **Exploration**: Discovering applications and examples of different EM regions
+4. **Reference**: Looking up specific values for different types of radiation
+5. **Visualization**: Seeing the relative scales of different EM regions
+
+### Educational Value
+
+- Demonstrates fundamental physics relationships
+- Shows real-world applications of each EM region
+- Provides accurate scientific data based on NIST standards
+- Interactive learning through exploration
+- Accessible to various skill levels
+
+---
+
+## Development and Contribution
+
+### Running Locally
+
+```bash
+npm install          # Install dependencies
+npm run dev          # Start development server (http://localhost:5173)
+npm run build        # Build for production
+npm run test         # Run test suite
+```
+
+### Key Development Commands
+
+- `npm run dev:test`: Start dev server with tests enabled
+- `npm run lint`: Check code quality
+- `npm run preview`: Preview production build locally
+
+### Testing
+
+- Unit tests for physics calculations ensure accuracy
+- Component tests verify UI behavior
+- All tests use Vitest and React Testing Library
+
+---
+
+## Additional Resources
+
+- **User Guide**: docs/user-guide.md
+- **Developer Guide**: docs/developer-guide.md
+- **API Reference**: docs/api-reference.md
+- **Architecture Details**: docs/architecture.md
+- **Tutorials**: docs/tutorials.md
+
+---
+
+*This file is designed to provide Large Language Models with comprehensive context about both the electromagnetic spectrum science and the technical implementation of this educational tool.*
+

@@ -1,0 +1,33 @@
+{
+  "name": "Electromagnetic Spectrum Explorer",
+  "short_name": "EM Spectrum",
+  "description": "Interactive tool for exploring the electromagnetic spectrum from radio waves to gamma rays",
+  "start_url": "/electromagnetic-spectrum-explorer/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/electromagnetic-spectrum-explorer/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/electromagnetic-spectrum-explorer/logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/electromagnetic-spectrum-explorer/logo.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "science", "utilities"],
+  "screenshots": []
+}
+

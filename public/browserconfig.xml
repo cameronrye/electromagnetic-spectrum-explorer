@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+  <msapplication>
+    <tile>
+      <square150x150logo src="/electromagnetic-spectrum-explorer/logo.svg"/>
+      <square310x310logo src="/electromagnetic-spectrum-explorer/logo.svg"/>
+      <wide310x150logo src="/electromagnetic-spectrum-explorer/logo.svg"/>
+      <TileColor>#667eea</TileColor>
+    </tile>
+  </msapplication>
+</browserconfig>
+

@@ -102,4 +102,5 @@ const ThemeSwitcher = () => {
   );
 };
 
-export default ThemeSwitcher;
+// Memoize component to prevent unnecessary re-renders
+export default React.memo(ThemeSwitcher);

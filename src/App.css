@@ -29,6 +29,27 @@
   flex-direction: column;
 }
 
+/* Skip link for keyboard navigation */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--theme-primary);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+  z-index: 100;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid var(--theme-focus);
+  outline-offset: 2px;
+}
+
 /* Header Styles */
 .app-header {
   background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #6366f1 100%);
