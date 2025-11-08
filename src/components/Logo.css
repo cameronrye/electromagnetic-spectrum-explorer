@@ -1,0 +1,45 @@
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-md);
+}
+
+.app-logo {
+  height: 80px;
+  width: auto;
+  opacity: 0;
+  animation: fadeIn 0.8s ease-in forwards;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.app-logo:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 8px var(--theme-primary));
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional pulse animation - can be enabled by adding 'pulse' class */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.app-logo.pulse {
+  animation: fadeIn 0.8s ease-in forwards, pulse 2s ease-in-out infinite;
+}
+

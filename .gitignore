@@ -16,6 +16,7 @@ dist/
 dist-ssr/
 build/
 out/
+dev-dist/
 
 # Environment variables
 .env
@@ -29,6 +30,9 @@ out/
 coverage/
 *.lcov
 .nyc_output/
+
+# Auto-generated documentation
+API.md
 
 # TypeScript
 *.tsbuildinfo

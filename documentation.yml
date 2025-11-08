@@ -1,0 +1,14 @@
+toc:
+  - name: Components
+    description: React components for the Electromagnetic Spectrum Explorer
+  - name: Contexts
+    description: React contexts for state management
+  - name: Hooks
+    description: Custom React hooks
+  - name: Utils
+    description: Utility functions and helpers
+  - name: Data
+    description: Data structures and constants
+
+theme: default
+
